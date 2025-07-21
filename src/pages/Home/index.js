@@ -1,20 +1,30 @@
-// src/pages/Home.js
 import React from 'react';
-import styled, { createGlobalStyle, keyframes } from 'styled-components';
-import Cabecalho from '../../components/cabecalho/Cabecalho'; // importando o cabeçalho
+import styled, { createGlobalStyle } from 'styled-components';
+import Cabecalho from '../../components/cabecalho/Cabecalho';
+import Grafico from '../../components/grafico/Grafico';
+import foto from './foto.png'; // Imagem de topo
+
+const ImagemTopo = styled.img`
+  width: 800px; /* Ajuste o tamanho como quiser */
+  height: 200px;
+  border-radius: 10px; /* Se quiser cantos arredondados */
+  margin-bottom: 20px;
+`;
+
 
 const GlobalStyle = createGlobalStyle`
-  /* ... seu estilo global ... */
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f7f7f7ff;
+  }
 `;
 
-const Particulas = styled.div`
-  /* ... seu estilo ... */  
-`;
-
-// outros styled components como Nome, Subtitulo, CabecalhoMain etc
+const Particulas = styled.div``; // se tiver efeito de fundo, mantenha aqui
 
 const CabecalhoMain = styled.main`
-  min-height: 100vh;
+  min-height: 60vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,16 +45,47 @@ const Subtitulo = styled.p`
   color: var(--claro);
 `;
 
+const SecaoGraficos = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 60px;
+`;
+
 const Home = () => {
+  const dadosLivros = [
+    { nome: 'Harry Potter', valor: 130 },
+    { nome: 'Acotar', valor: 160 },
+    { nome: 'Devils Nigth', valor: 125 },
+  ];
+
+  const dadosAutores = [
+    { nome: 'Penelope Douglas', valor: 180 },
+    { nome: 'Jane Austen', valor: 150 },
+    { nome: 'Ana Huang', valor: 90 },
+  ];
+
+  const dadosEditoras = [
+    { nome: 'Editora Alfa', valor: 200 },
+    { nome: 'Editora Beta', valor: 110 },
+    { nome: 'Editora Gama', valor: 85 },
+  ];
+
   return (
     <>
       <GlobalStyle />
       <Particulas />
-      <Cabecalho />  {/* aqui está o menu */}
+      <Cabecalho />
       <CabecalhoMain>
+        <ImagemTopo src={foto} alt="Imagem topo" />
         <Nome>Site Livros</Nome>
         <Subtitulo>Aspirante a Desenvolvedora</Subtitulo>
       </CabecalhoMain>
+      <SecaoGraficos>
+        <Grafico titulo="Livros Mais Vendidos" dados={dadosLivros} cor="#29a372" />
+        <Grafico titulo="Autores Mais Vendidos" dados={dadosAutores} cor="#12dc81" />
+        <Grafico titulo="Editoras Mais Vendidas" dados={dadosEditoras} cor="#00ff04" />
+      </SecaoGraficos>
     </>
   );
 };

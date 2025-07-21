@@ -22,13 +22,13 @@ const Formulario = styled.div`
 
 const GridAuto = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 3fr 1fr 1fr;
   gap: 10px;
 `;
 
 const GridConf = styled.div`
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 10fr 1fr;
   gap: 10px;
   margin-top: 10px;
 `;
@@ -154,9 +154,11 @@ export default function PaginaLivros() {
   const [autor, setAutor] = useState('');
   const [genero, setGenero] = useState('Romance');
   const [data, setData] = useState('');
-  const [descricao, setDescricao] = useState('');
+  const [editora, setEditora] = useState('');
   const [preco, setPreco] = useState('');
   const [livroSelecionado, setLivroSelecionado] = useState(null);
+  const [isbn, setIsbn] = useState('');
+
 
   function salvarLivro() {
     if (!titulo || !autor || !data || !preco) {
@@ -170,8 +172,9 @@ export default function PaginaLivros() {
       autor,
       genero,
       data,
-      descricao,
+      editora,
       preco: parseFloat(preco),
+      isbn,
     };
     setLivros([...livros, novoLivro]);
 
@@ -179,8 +182,10 @@ export default function PaginaLivros() {
     setAutor('');
     setGenero('Romance');
     setData('');
-    setDescricao('');
+    setEditora('');
     setPreco('');
+    setIsbn('');
+
   }
 
   function removerLivro(id) {
@@ -200,6 +205,7 @@ export default function PaginaLivros() {
       <Cabecalho />
       <Container>
         <Formulario>
+          
           <GridAuto>
             <div>
               <Label>Título</Label>
@@ -219,6 +225,13 @@ export default function PaginaLivros() {
                 <option>Religião</option>
               </Select>
             </div>
+
+             <div>
+              <Label>Autor</Label>
+              <Input value={autor} onChange={e => setAutor(e.target.value)} />
+             
+            </div>
+
             <div>
               <Label>Preço (R$)</Label>
               <Input
@@ -230,15 +243,24 @@ export default function PaginaLivros() {
                 placeholder="0.00"
               />
             </div>
+
+            <div>
+              <Label>ISBN</Label>
+              <Input
+                value={isbn}
+                onChange={e => setIsbn(e.target.value)}
+                placeholder="123456"
+              />
+            </div>
           </GridAuto>
+          
 
           <GridConf>
-            <div>
-              <Label>Autor</Label>
-              <Input value={autor} onChange={e => setAutor(e.target.value)} />
-              <Label>Descrição</Label>
-              <TextArea value={descricao} onChange={e => setDescricao(e.target.value)} />
+            <div> 
+               <Label>Editora</Label>
+              <TextArea value={editora} onChange={e => setEditora(e.target.value)} />
             </div>
+            
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
               <SaveButton onClick={salvarLivro}>
                 <FaSave size={28} />
@@ -252,18 +274,25 @@ export default function PaginaLivros() {
           <thead>
             <tr>
               <Th>TÍTULO</Th>
-              <Th>DATA</Th>
+              <Th>AUTOR</Th>
               <Th>GÊNERO</Th>
-              <Th>PREÇO (R$)</Th>
+              <Th>EDITORA</Th>
+              <Th>ISBN</Th>
+              <Th>DATA</Th>
+              <Th>PREÇO(R$)</Th>
               <Th></Th>
             </tr>
           </thead>
           <tbody>
             {livros.map((livro, i) => (
               <Linha key={livro.id} even={i % 2 === 0}>
+                
                 <Td>{livro.titulo}</Td>
-                <Td>{livro.data}</Td>
+                <Td>{livro.autor}</Td>
                 <Td>{livro.genero}</Td>
+                 <Td>{livro.editora}</Td>
+                <Td>{livro.isbn}</Td>
+                <Td>{livro.data}</Td>
                 <Td>{livro.preco.toFixed(2)}</Td>
                 <Acoes>
                   <Info onClick={() => abrirDetalhes(livro)} />
@@ -284,17 +313,20 @@ export default function PaginaLivros() {
                   <FaTimesCircle size={24} color="red" />
                 </button>
               </TopoModal>
-              <InfoLinha><b>ID:</b> {livroSelecionado.id}</InfoLinha>
               <InfoLinha><b>TÍTULO:</b> {livroSelecionado.titulo}</InfoLinha>
               <InfoLinha><b>AUTOR:</b> {livroSelecionado.autor}</InfoLinha>
               <InfoLinha><b>GÊNERO:</b> {livroSelecionado.genero}</InfoLinha>
               <InfoLinha><b>DATA:</b> {livroSelecionado.data}</InfoLinha>
               <InfoLinha><b>PREÇO:</b> R$ {livroSelecionado.preco.toFixed(2)}</InfoLinha>
-              <InfoLinha><b>DESCRIÇÃO:</b> {livroSelecionado.descricao}</InfoLinha>
+              <InfoLinha><b>ISBN:</b> {livroSelecionado.isbn}</InfoLinha>
+              <InfoLinha><b>EDITORA:</b> {livroSelecionado.editora}</InfoLinha>
+             
+
             </ModalBox>
           </Modal>
         )}
       </Container>
+      
     </>
   );
 }

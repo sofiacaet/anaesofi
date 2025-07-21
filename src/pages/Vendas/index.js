@@ -4,10 +4,27 @@ import styled from 'styled-components';
 import { FaSave, FaTrash, FaInfoCircle, FaTimesCircle } from 'react-icons/fa';
 import Cabecalho from '../../components/cabecalho/Cabecalho';
 import Info from '../../components/info/Info';
+import foto1 from './foto1.png';
+import foto2 from './foto2.png';
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%; 
+`;
+
+const ImagemLateral = styled.img`
+  width: 160px;
+  opacity: 0.7;
+  z-index: 0;
+`;
 
 const Container = styled.div`
-  padding: 120px 20px 40px;
+  flex: 1;
   max-width: 1000px;
+  padding: 120px 20px 40px;
   margin: 0 auto;
   color: #333;
 `;
@@ -22,13 +39,13 @@ const Formulario = styled.div`
 
 const GridAuto = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;  /* 4 colunas agora: data, valor, cliente, livros */
+  grid-template-columns: 1fr 1fr 1fr ;  
   gap: 10px;
 `;
 
 const GridConf = styled.div`
   display: grid;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 5fr 5fr 1fr;
   gap: 10px;
   margin-top: 10px;
 `;
@@ -69,7 +86,7 @@ const SelectMultiple = styled.select`
   border: 1px solid grey;
   background-color: #eee;
   border-radius: 6px;
-  height: 100px;
+  height: 80px;
 `;
 
 const SaveButton = styled.button`
@@ -160,17 +177,17 @@ const InfoLinha = styled.p`
 
 export default function PaginaVendas() {
   const livrosDisponiveis = [
-    { id: 1, titulo: 'Dom Casmurro' },
-    { id: 2, titulo: 'O Pequeno Príncipe' },
-    { id: 3, titulo: '1984' },
-    { id: 4, titulo: 'A Menina que Roubava Livros' },
+    { id: 1, titulo: 'Harry Potter' },
+    { id: 2, titulo: 'Acotar' },
+    { id: 3, titulo: 'Principe Cruel' },
+    { id: 4, titulo: 'Desenvolvimento Web' },
   ];
 
   const clientesDisponiveis = [
-    { id: 1, nome: 'Maria Silva' },
-    { id: 2, nome: 'João Souza' },
-    { id: 3, nome: 'Ana Pereira' },
-    { id: 4, nome: 'Carlos Oliveira' },
+    { id: 1, nome: 'Gil Eduardo' },
+    { id: 2, nome: 'Sofia Caetano' },
+    { id: 3, nome: 'Ana Julia Viana' },
+    { id: 4, nome: 'Leandro Lovo' },
   ];
 
   const [vendas, setVendas] = useState([]);
@@ -228,6 +245,8 @@ export default function PaginaVendas() {
   return (
     <>
       <Cabecalho />
+      <Wrapper>
+        <ImagemLateral src={foto1} alt="decoração esquerda" />
       <Container>
         <Formulario>
           <GridAuto>
@@ -254,7 +273,14 @@ export default function PaginaVendas() {
                 ))}
               </Select>
             </div>
+           </GridAuto>
+
+          <GridConf>
             <div>
+              <Label>Descrição</Label>
+              <TextArea value={descricao} onChange={e => setDescricao(e.target.value)} />
+            </div>
+             <div>
               <Label>Livros Vendidos</Label>
               <SelectMultiple multiple value={livrosVendidos.map(String)} onChange={handleSelectLivrosChange}>
                 {livrosDisponiveis.map(livro => (
@@ -262,13 +288,7 @@ export default function PaginaVendas() {
                 ))}
               </SelectMultiple>
             </div>
-          </GridAuto>
-
-          <GridConf>
-            <div>
-              <Label>Descrição</Label>
-              <TextArea value={descricao} onChange={e => setDescricao(e.target.value)} />
-            </div>
+         
             <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
               <SaveButton onClick={salvarVenda}>
                 <FaSave size={28} />
@@ -324,6 +344,8 @@ export default function PaginaVendas() {
           </Modal>
         )}
       </Container>
+       <ImagemLateral src={foto2} alt="decoração direita" />
+      </Wrapper>
     </>
   );
 }

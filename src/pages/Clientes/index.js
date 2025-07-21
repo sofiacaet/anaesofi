@@ -22,7 +22,13 @@ const Formulario = styled.div`
 
 const GridAuto = styled.div`
   display: grid;
-  grid-template-columns: 2fr 3fr 2fr;
+  grid-template-columns: 5fr 3fr 1fr;
+  gap: 10px;
+`;
+
+const Grid2 = styled.div`
+  display: grid;
+  grid-template-columns: 5fr 3fr 1fr;
   gap: 10px;
 `;
 
@@ -130,10 +136,11 @@ export default function PaginaClientes() {
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
+  const [cpf, setCpf] = useState('');
   const [clienteSelecionado, setClienteSelecionado] = useState(null);
 
   function salvarCliente() {
-    if (!nome || !email || !telefone) {
+    if (!nome || !email || !telefone || !cpf) {
       alert('Preencha todos os campos!');
       return;
     }
@@ -143,12 +150,14 @@ export default function PaginaClientes() {
       nome,
       email,
       telefone,
+      cpf,
     };
 
     setClientes([...clientes, novoCliente]);
     setNome('');
     setEmail('');
     setTelefone('');
+    setCpf('');
   }
 
   function removerCliente(id) {
@@ -175,18 +184,38 @@ export default function PaginaClientes() {
             </div>
             <div>
               <Label>Email</Label>
-              <Input type="email" value={email} onChange={e => setEmail(e.target.value)} />
+              <Input type="email" value={email} 
+              onChange={e => setEmail(e.target.value)}
+              placeholder="email@example.com" 
+              />
             </div>
+            
+            
+          </GridAuto>
+          <Grid2>
             <div>
               <Label>Telefone</Label>
-              <Input value={telefone} onChange={e => setTelefone(e.target.value)} />
+              <Input value={telefone} 
+              onChange={e => setTelefone(e.target.value)} 
+              placeholder="(00) 00000-0000"
+              />
             </div>
-          </GridAuto>
-          <div style={{ marginTop: 15, textAlign: 'right' }}>
+            <div  >
+              <Label>CPF</Label>
+              <Input value={cpf} 
+              onChange={e => setCpf(e.target.value)} 
+              placeholder="000.000.000-00" 
+              />
+             
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'flex-end' }}>
             <SaveButton onClick={salvarCliente}>
               <FaSave size={28} />
             </SaveButton>
-          </div>
+            </div>
+         
+          </Grid2>
+          
         </Formulario>
 
         <Titulo>Clientes Cadastrados</Titulo>
@@ -196,6 +225,7 @@ export default function PaginaClientes() {
               <Th>Nome</Th>
               <Th>Email</Th>
               <Th>Telefone</Th>
+              <Th>CPF</Th>
               <Th></Th>
             </tr>
           </thead>
@@ -205,6 +235,7 @@ export default function PaginaClientes() {
                 <Td>{cliente.nome}</Td>
                 <Td>{cliente.email}</Td>
                 <Td>{cliente.telefone}</Td>
+                <Td>{cliente.cpf}</Td>
                 <Acoes>
                   <Info onClick={() => abrirDetalhes(cliente)} />
                   <BotaoAcao cor="red" onClick={() => removerCliente(cliente.id)}>
@@ -228,6 +259,7 @@ export default function PaginaClientes() {
               <InfoLinha><b>Nome:</b> {clienteSelecionado.nome}</InfoLinha>
               <InfoLinha><b>Email:</b> {clienteSelecionado.email}</InfoLinha>
               <InfoLinha><b>Telefone:</b> {clienteSelecionado.telefone}</InfoLinha>
+              <InfoLinha><b>CPF:</b> {clienteSelecionado.cpf}</InfoLinha>
             </ModalBox>
           </Modal>
         )}

@@ -46,7 +46,7 @@ const Cabecalho = () => {
   return (
     <Navegacao>
       <Menu>
-        <li><MenuLink to="/">Início</MenuLink></li>
+        <li><MenuLink to="/home">Início</MenuLink></li>
         <li><MenuLink to="/livro">Livro</MenuLink></li>
         <li><MenuLink to="/vendas">Vendas</MenuLink></li>
         <li><MenuLink to="/clientes">Clientes</MenuLink></li>
