@@ -54,21 +54,21 @@ const SecaoGraficos = styled.section`
 
 const Home = () => {
   const dadosLivros = [
-    { nome: 'Harry Potter', valor: 130 },
-    { nome: 'Acotar', valor: 160 },
-    { nome: 'Devils Nigth', valor: 125 },
+    { nome: 'Harry Potter', valor: 1300 },
+    { nome: 'Acotar', valor: 800 },
+    { nome: 'Devils Nigth', valor: 500 },
   ];
 
   const dadosAutores = [
-    { nome: 'Penelope Douglas', valor: 180 },
-    { nome: 'Jane Austen', valor: 150 },
-    { nome: 'Ana Huang', valor: 90 },
+    { nome: 'Penelope Douglas', valor: 900 },
+    { nome: 'Jane Austen', valor: 670 },
+    { nome: 'Ana Huang', valor: 450 },
   ];
 
   const dadosEditoras = [
-    { nome: 'Editora Alfa', valor: 200 },
-    { nome: 'Editora Beta', valor: 110 },
-    { nome: 'Editora Gama', valor: 85 },
+    { nome: 'Editora Alfa', valor: 1500 },
+    { nome: 'Editora Beta', valor: 1400 },
+    { nome: 'Editora Gama', valor: 1200 },
   ];
 
   return (
@@ -78,8 +78,8 @@ const Home = () => {
       <Cabecalho />
       <CabecalhoMain>
         <ImagemTopo src={foto} alt="Imagem topo" />
-        <Nome>Site Livros</Nome>
-        <Subtitulo>Aspirante a Desenvolvedora</Subtitulo>
+        <Nome>Gerenciamento de uma Livraria</Nome>
+        <Subtitulo>Por: Ana Julia Viana e Sofia Caetano</Subtitulo>
       </CabecalhoMain>
       <SecaoGraficos>
         <Grafico titulo="Livros Mais Vendidos" dados={dadosLivros} cor="#29a372" />

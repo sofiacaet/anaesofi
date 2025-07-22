@@ -27,13 +27,14 @@ const Container = styled.div`
   padding: 120px 20px 40px;
   margin: 0 auto;
   color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 `;
 
 const Formulario = styled.div`
-  border: 2px solid lightgray;
-  box-shadow: 3px 3px 3px 2px darkgray;
-  padding: 20px;
-  margin-bottom: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  padding: 30px 30px 25px;
+  margin-bottom: 50px;
   background-color: white;
 `;
 
@@ -58,92 +59,142 @@ const Label = styled.label`
 
 const Input = styled.input`
   width: 100%;
-  padding: 6px;
-  border: 1px solid darkgrey;
-  border-radius: 6px;
+  padding: 10px 12px;
+  border: 2px solid #71e7b2;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: #04905a;
+    box-shadow: 0 0 8px #04905a;
+  }
 `;
 
 const TextArea = styled.textarea`
-  width: 100%;
-  height: 75px;
-  padding: 6px;
-  border: 1px solid darkgrey;
-  border-radius: 6px;
+ width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #71e7b2;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+  &:focus {
+    outline: none;
+    border-color: #04905a;
+    box-shadow: 0 0 8px #04905a;
+  }
 `;
 
 const Select = styled.select`
   width: 100%;
-  padding: 6px;
-  border: 1px solid grey;
-  background-color: #eee;
-  border-radius: 6px;
-  height: 38px; /* mesma altura dos inputs */
+  padding: 10px 12px;
+  border: 2px solid #71e7b2;
+  background-color: #f0f7f7;
+  border-radius: 10px;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+    border-color: #04905a;
+    box-shadow: 0 0 8px #04905a;
+    background-color: white;
+  }
 `;
 
 const SelectMultiple = styled.select`
   width: 100%;
   padding: 6px;
-  border: 1px solid grey;
-  background-color: #eee;
-  border-radius: 6px;
-  height: 80px;
+  height: 73px;
+  border: 2px solid #71e7b2;
+  background-color: #f0f7f7;
+  border-radius: 10px;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+    border-color: #04905a;
+    box-shadow: 0 0 8px #04905a;
+    background-color: white;
+  }
 `;
 
 const SaveButton = styled.button`
-  background-color: green;
+  background-color: #04905a;
   color: white;
   padding: 15px;
   border: none;
-  border-radius: 6px;
+  border-radius: 10px;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s ease;
 
   &:hover {
-    opacity: 0.8;
+    background-color: #10e291;
   }
 `;
 
 const Titulo = styled.h2`
-  color: whitesmoke;
-  text-shadow: 2px 2px 4px #000000;
-  font-size: 24px;
+  color: #04905a;
+  font-size: 28px;
+  margin-bottom: 15px;
+  text-shadow: 1px 1px 2px #10e291;
 `;
 
 const Tabela = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  border: 2px solid lightgray;
-  box-shadow: 3px 3px 3px 2px darkgray;
+   width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
   background-color: white;
 `;
 
 const Th = styled.th`
-  padding: 10px;
+  padding: 12px 15px;
   text-align: left;
+  background-color: #04905a;
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
 `;
 
 const Td = styled.td`
-  padding: 10px;
+ padding: 12px 15px;
   text-align: left;
+  font-size: 15px;
+  color: #444;
 `;
 
 const Linha = styled.tr`
-  background-color: ${props => props.even ? 'lightgray' : 'white'};
+  background-color: ${props => props.even ? '#f0f7f7' : 'white'};
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #71e7b2;
+  }
 `;
 
 const Acoes = styled.td`
   display: flex;
-  gap: 6px;
+  gap: 12px;
+  padding: 10px 15px;
 `;
 
 const BotaoAcao = styled.button`
-  padding: 10px;
-  border-radius: 5px;
+  padding: 8px 12px;
+  border-radius: 8px;
   border: none;
   color: white;
-  background-color: ${props => props.cor || 'gray'};
+  background-color: ${props => props.cor || '#999'};
+  transition: opacity 0.3s ease;
 
   &:hover {
-    opacity: 0.8;
+    opacity: 0.85;
     cursor: pointer;
   }
 `;
@@ -156,14 +207,15 @@ const Modal = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 `;
 
 const ModalBox = styled.div`
   background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 500px;
-  box-shadow: 3px 3px 10px #000;
+  padding: 30px 35px;
+  border-radius: 14px;
+  width: 480px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 `;
 
 const TopoModal = styled.div`
@@ -172,7 +224,9 @@ const TopoModal = styled.div`
 `;
 
 const InfoLinha = styled.p`
-  margin: 8px 0;
+   margin: 10px 0;
+  font-size: 16px;
+  color: #333;
 `;
 
 export default function PaginaVendas() {
