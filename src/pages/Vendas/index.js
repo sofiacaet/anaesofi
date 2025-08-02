@@ -335,7 +335,7 @@ export default function PaginaVendas() {
               <TextArea value={descricao} onChange={e => setDescricao(e.target.value)} />
             </div>
              <div>
-              <Label>Livros Vendidos</Label>
+              <Label>Livros</Label>
               <SelectMultiple multiple value={livrosVendidos.map(String)} onChange={handleSelectLivrosChange}>
                 {livrosDisponiveis.map(livro => (
                   <option key={livro.id} value={livro.id}>{livro.titulo}</option>

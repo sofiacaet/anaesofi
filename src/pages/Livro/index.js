@@ -1,9 +1,25 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { FaSave, FaTrash, FaInfoCircle, FaTimesCircle } from 'react-icons/fa';
+import { FaSave, FaTrash, FaInfoCircle, FaTimesCircle } from 'react-icons/fa'; //ícones do FontAwesome
 import Cabecalho from '../../components/cabecalho/Cabecalho';
 import Info from '../../components/info/Info';
+import foto1 from './foto1.png';
+import foto2 from './foto2.png';
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  width: 100%; 
+`;
+
+const ImagemLateral = styled.img`
+  width: 160px;
+  opacity: 0.7;
+  z-index: 0;
+`;
 
 const Container = styled.div`
   padding: 100px 20px 40px;
@@ -263,6 +279,8 @@ export default function PaginaLivros() {
   return (
     <>
       <Cabecalho />
+      <Wrapper>
+        <ImagemLateral src={foto1} alt="decoração esquerda" />
       <Container>
         <Formulario>
           
@@ -386,6 +404,8 @@ export default function PaginaLivros() {
           </Modal>
         )}
       </Container>
+        <ImagemLateral src={foto2} alt="decoração direita" />
+      </Wrapper>
       
     </>
   );
